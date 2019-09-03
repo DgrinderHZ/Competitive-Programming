@@ -1,2 +1,2 @@
 # CP-and-Training
-Competitive Programming and training codes!
+Competitive Programming problems I solved while training!
