@@ -48,16 +48,23 @@ int main ()
     cin.tie(0);
     cout.tie(0);
     
-    ll p=0, c,v,vv,a,l;
+    ll c,v,vv,a,l, read;
     
     cin>>c >>v >>vv >>a >>l;
     
-    ll i;
-    for( i = 0; p<c ; i++ ){
-    	int add = v + i*a;
-		if(add <= vv) p += add;
+    read = v;
+    
+    ll i;//days
+    while(1){
+    	i++;
+    	c -= read;
     	
-    	p -= (i!=0)?l:0;
+    	if(c <= 0) break;
+    	
+    	c += l;
+		read += a;
+		
+		if(read>vv) read = vv;
     	
 	}
 	
