@@ -36,29 +36,35 @@ typedef pair<int,int> pi;
 typedef unsigned long long ull;
 typedef long double ld;
 
-unordered_map<char, int> last_pos;
-unordered_set<char> active;
 
 int check(){
-	int n, k;
-    string s;
-    cin >> n >> k >> s;
- 
-    for (int i = 0; i < n; i++) {
-        last_pos[s[i]] = i;
-    }
- 
-    for (int i = 0; i < n; i++) {
-        active.insert(s[i]);
-        if (active.size() > k) {
-            cout << "YES" << endl;
-            return 0;
-        }
-        if (last_pos[s[i]] == i)
-            active.erase(s[i]);
-    }
- 
-    cout << "NO" << endl;
+	int n, g;
+	string s;
+	cin>> n>> g>> s;
+	vi opn(n, 0), last(n, 0);
+	
+	int i =0, act = 0;
+	for(char c: s){
+		last[c-'A'] = i++;	
+	}
+	
+	i=0;
+	for(char c: s){
+		if(opn[c-'A'] == 0 ){
+			opn[c-'A'] = 1;
+			act++;//open or active
+	 	
+		}
+		
+		if(act > g) return 0;
+		
+		if(last[c-'A']== i){
+			act--;
+		}
+
+		i++;	
+	}
+	return 1;
 }
 
 int main ()
@@ -68,7 +74,7 @@ int main ()
   	//freopen ("output.txt","w",stdout);
   #endif
   
-    check();
+    if(!check()) cout<<"YES"; else cout<<"NO";
   //fclose (stdin);
   //fclose (stdout);
   return 0;
