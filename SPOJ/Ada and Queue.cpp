@@ -39,38 +39,71 @@ int main() {
   string s;
   cin>>t; cin.ignore();
   deque<int> q;
+  int head = 0;
   
   while(t--){
   	
-  	getline(cin, s);
+  	getline(cin, s); // we still can avoid using substr: cin only
   	
   	if(s[0] == 't'){
-  		 q.push_front(stoi(s.substr(8).c_str()));
+  		
+  		 if(head==0) q.push_front(stoi(s.substr(8).c_str()));
+  		 else q.push_back(stoi(s.substr(8).c_str()));
+  		 
 	  }else if(s[0]=='p'){
-  		 q.push_back(stoi(s.substr(10).c_str()));
+	  	
+  		 if(head == 0) q.push_back(stoi(s.substr(10).c_str()));
+  		 else q.push_front(stoi(s.substr(10).c_str()));
+  		 
 	  }else{
 	  	
 	  	if(s =="back"){
 	  		
-	  		if(!q.empty()) {
-	  			cout<<q.back()<<endl;
-	  			q.pop_back();
+	  		if(head == 0){
+	  			
+	  			if(!q.empty()) {
+		  			cout<<q.back()<<endl;
+		  			q.pop_back();
+				  }else{
+				  	cout<<"No job for Ada?"<<endl;
+				  }
+				  
 			  }else{
-			  	cout<<"No job for Ada?"<<endl;
+			  	
+			  	if(!q.empty()) {
+		  			cout<<q.front()<<endl;
+		  			q.pop_front();
+				  }else{
+				  	cout<<"No job for Ada?"<<endl;
+				  }
+				  
 			  }
 			  
 		  }else if(s =="front"){
 		  	
-		  	if(!q.empty()) {
-	  			cout<<q.front()<<endl;
-	  			q.pop_front();
+		  	if(head == 0){
+		  		
+	  			if(!q.empty()) {
+		  			cout<<q.front()<<endl;
+	  				q.pop_front();
+				  }else{
+				  	cout<<"No job for Ada?"<<endl;
+				  }
+				  
 			  }else{
-			  	cout<<"No job for Ada?"<<endl;
+			  	
+			  	if(!q.empty()) {
+		  			cout<<q.back()<<endl;
+		  			q.pop_back();
+				  }else{
+				  	cout<<"No job for Ada?"<<endl;
+				  }
+				  
 			  }
 		  	
 		  }else if(s == "reverse"){
 		  	
-		  	reverse(all(q));
+		  	head ^= 1;
 			  
 		  }
 	  }
@@ -80,4 +113,5 @@ int main() {
   
    return 0;
 }
+
 
