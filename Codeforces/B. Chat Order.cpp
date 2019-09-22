@@ -34,24 +34,21 @@ int main() {
   
   int n;
   string s;
-  stack<string> stk;
-  unordered_set<string> uset;
-  vector<string> v;
   
   cin>>n;
+  vector<string> v(n);
+  map<string, bool> printed;
+  int i = 0;
   while(n--){
-  	cin>>s;
-  	stk.push(s);
+  	cin>> v[i++]; 
+  	printed[v[i-1]] = false;
   }
   
-  while(!stk.empty()){
-  	string str = stk.top();
-  	if(find(all(v),str) == v.end()) v.pb(str);
-  	stk.pop();
-  }
-	
-	for(auto it = v.begin(); it != v.end(); it++){
-		cout<< *it <<endl;
+	for(auto it = v.rbegin(); it != v.rend(); it++){
+		if(!printed[*it]){
+			cout<< *it <<endl;
+			printed[*it] = true;
+		}
 	}
   return 0;
 }
