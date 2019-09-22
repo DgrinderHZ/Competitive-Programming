@@ -1,5 +1,5 @@
 // https://codeforces.com/contest/2/problem/A
-// WA
+// fixeded 'at least' bug
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -43,14 +43,14 @@ int main() {
   int m = -1002;
   vector<Round> record;
   map<string, int> roundw, final;
-  
+  Round t;
   cin>> n; 
   while(n--){
-  	Round t;
-  	cin>> t.nm >> t.scr; 
   	
+  	cin>> t.nm >> t.scr; 
   	roundw[t.nm] += t.scr;
   	record.pb(t);
+  	
   }
   // find the max
   for(auto it = roundw.begin(); it != roundw.end(); it++){
@@ -59,15 +59,14 @@ int main() {
   		m = roundw[temp.F];
 	  }
   }
+  // find the winner
   for(auto rnd: record){
   	
   	final[rnd.nm] += rnd.scr;
-  	if(final[rnd.nm] == m && roundw[rnd.nm] == m){
+  	// the bag: gathered at least m points (>= m)
+  	if(final[rnd.nm] >= m && roundw[rnd.nm] == m){
   		cout<< rnd.nm;
   		return 0;
-	  }
+	}
   }
-  
-
-  return 0;
 }
