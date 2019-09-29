@@ -10,7 +10,7 @@ int solution(vector<int> &A) {
     }
 
     int mn = 1000000000;
-    for(int i=0; i < n; i++){
+    for(int i=0; i < n-1; i++){
         int cur = abs(pre.back() - pre[i] - pre[i]);
         if(cur < mn) mn = cur;
     }
