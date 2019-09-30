@@ -7,10 +7,14 @@
 vector<int> solution(int N, vector<int> &A) {
     // write your code in C++14 (g++ 6.2.0)
     vector<int> counter(N, 0);
+    int mx = 0;
     for(int i: A){
-        if(i >= 1 && i <= N) counter[i-1]++;
+        if(i >= 1 && i <= N){
+            counter[i-1]++;
+            mx = max(counter[i-1], mx);
+        } 
         else if(i == N+1){
-            int mx = *max_element(counter.begin(), counter.end());
+            //int mx = *max_element(counter.begin(), counter.end());
             counter = vector<int>(N, mx);
         }
     }
