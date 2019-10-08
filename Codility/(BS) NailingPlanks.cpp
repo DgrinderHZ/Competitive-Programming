@@ -10,14 +10,18 @@ vector<int> c(30003);
 
 bool check(int mx){
     vector<int> nailed(sa, 0);
+    int cnt = 0;
     for(int i = 0 ; i < mx; i++){
         for(int k = 0; k < sa ; k++)
-            if(a[k] <= c[i] && c[i] <= b[k]) nailed[k] = 1;
+            if(a[k] <= c[i] && c[i] <= b[k]){
+                if(nailed[k] != 1){
+                    nailed[k] = 1;
+                    cnt++;
+                }
+            }
     }
     
-    int cnt = count(nailed.begin(), nailed.end(), 0);
-    
-    if(cnt == 0) return true;
+    if(cnt == sa) return true;
     return false;
 }
 
@@ -30,10 +34,7 @@ int solution(vector<int> &A, vector<int> &B, vector<int> &C) {
     for(int i= 0; i < sa; i++){
         a[i] = A[i];
         b[i] = B[i];
-    }
-    
-    for(int i= 0; i < sc; i++){
-        c[i] = C[i];
+        if(i < sc)  c[i] = C[i];
     }
     
     int l = 0, r = (int)1e3*3;
@@ -49,4 +50,3 @@ int solution(vector<int> &A, vector<int> &B, vector<int> &C) {
     }
     return ans;
 }
-// you can use includes, for example:
