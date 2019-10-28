@@ -21,7 +21,7 @@ int main ()
     if(y>0){
         printf("2");
       }else{
-        printf("2");
+        printf("3");
       }
   }
    
